@@ -1,6 +1,5 @@
 <script setup>
 import NavBar from '../components/NavBar.vue';
-import NavBarItem from '../components/NavBarItem.vue';
 import { ref } from 'vue';
 
 const tabs = ['HTML', 'CSS', 'JavaScript'];
@@ -32,7 +31,7 @@ function setTab(to) {
         </li>
       </template>
       <template #other>
-        <NavBarItem label="Preview" class="btn" />
+        <button class="btn">Preview</button>
       </template>
     </nav-bar>
     <div></div>
