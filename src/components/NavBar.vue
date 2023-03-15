@@ -1,60 +1,29 @@
-<script setup>
-import { defineProps } from 'vue';
-const props = defineProps({
-  title: {
-    type: String,
-    default: '',
-  },
-});
-</script>
+<script setup></script>
 
 <template>
-  <div class="navbar bg-base-100">
-    <div class="navbar-start">
-      <div class="dropdown">
-        <label tabindex="0" class="btn btn-ghost lg:hidden">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            class="h-5 w-5"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M4 6h16M4 12h8m-8 6h16"
-            />
-          </svg>
-        </label>
-        <ul
-          tabindex="0"
-          class="
-            menu menu-compact
-            dropdown-content
-            mt-3
-            p-2
-            shadow
-            bg-base-100
-            rounded-box
-            w-52
-          "
-        >
-          <slot name="dropdown"></slot>
-        </ul>
+  <div class="nav">
+    <div>
+      <div>
+        <slot name="brand"></slot>
       </div>
-      <a class="btn btn-ghost normal-case text-xl">{{ title }}</a>
-    </div>
-    <div class="navbar-center hidden lg:flex">
-      <div class="menu menu-horizontal p-1">
-        <div class="tabs tabs-boxed">
-          <slot></slot>
-        </div>
+      <div>
+        <slot></slot>
       </div>
-    </div>
-    <div class="navbar-end">
-      <slot name="other"></slot>
     </div>
   </div>
 </template>
+
+<style scoped>
+.nav {
+  @apply fixed top-0 left-0 right-0 border bg-transparent;
+}
+.nav > div {
+  @apply flex flex-row items-center px-2.5 py-1;
+}
+.nav > div > div:first-child {
+  @apply flex-grow flex flex-row space-x-2 md:py-1.5 md:justify-center;
+}
+.nav > div > div:last-child {
+  @apply md:hidden;
+}
+</style>
