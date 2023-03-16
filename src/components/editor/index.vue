@@ -1,10 +1,10 @@
 <script setup>
 import createEditor from './init';
 import {
-  defineEmits,
   defineProps,
   reactive,
   ref,
+  onBeforeUnmount,
   onMounted,
   watchEffect,
 } from 'vue';
@@ -14,35 +14,33 @@ const props = defineProps({
     type: String,
     default: '',
   },
+  initialDoc: {
+    type: String,
+    default: '',
+  },
+  file: {
+    type: String,
+    default: '',
+  },
 });
 
 const emit = defineEmits(['change']);
 const el = ref();
-const tmp = ref('');
-const cache = {};
 
 let editor;
 
-watchEffect(() => {
-  const lang = props.lang;
-  console.log('lang changed to ', lang);
-  if (!lang) return;
-  if (!cache[lang]) {
-    cache[lang] = 'new';
-  }
-  tmp.value = cache[lang];
+onMounted(() => {
+  editor = createEditor({
+    target: el.value,
+    lang: props.lang,
+    initialDoc: props.initialDoc,
+    file: props.file,
+  });
+  watchEffect(() => emit('change', editor.doc.value));
 });
 
-onMounted(() => {
-  editor = createEditor(el.value);
-  watchEffect(() => editor.setDoc(tmp.value));
-  watchEffect(() => editor.setLanguage(props.lang));
-  watchEffect(() => {
-    const changed = editor.doc.value;
-    console.log('current doc changed...', changed);
-    cache[props.lang] = changed;
-    emit('change', changed);
-  });
+onBeforeUnmount(() => {
+  // gracefully destroy (editor) instance
 });
 </script>
 

@@ -38,10 +38,15 @@ import { css } from '@codemirror/lang-css';
 import { html } from '@codemirror/lang-html';
 import { ref } from 'vue';
 
-export default function createEditor(target) {
+const instances = new Map();
+
+export default function createEditor({ target, initialDoc, lang, file }) {
+  if (instances.has(file)) {
+    return instances.get(file);
+  }
   let doc = ref('');
-  const state = EditorState.create({
-    doc: '',
+  const state = {
+    doc: initialDoc || '',
     extensions: [
       lineNumbers(),
       highlightActiveLineGutter(),
@@ -74,40 +79,25 @@ export default function createEditor(target) {
         doc.value = e.state.doc.toString();
       }),
     ],
-  });
+  };
+  switch (('' + lang).toLowerCase()) {
+    case 'html':
+      state.extensions.push(html());
+      break;
+    case 'css':
+      state.extensions.push(css());
+      break;
+    case 'javascript':
+      state.extensions.push(javascript());
+      break;
+    default:
+      break;
+  }
   const view = new EditorView({
-    state,
+    state: EditorState.create(state),
     parent: target,
   });
-  const langConf = new Compartment();
-  function setLanguage(lang) {
-    let plug;
-    switch (('' + lang).toLowerCase()) {
-      case 'html':
-        plug = html();
-        break;
-      case 'css':
-        plug = css();
-        break;
-      case 'javascript':
-        plug = javascript();
-        break;
-      default:
-        break;
-    }
-    if (!plug) return;
-    view.dispatch({
-      effects: langConf.reconfigure(plug),
-    });
-  }
-  function setDoc(d) {
-    view.dispatch({
-      changes: { from: 0, to: view.state.doc.length, insert: d + '\n' },
-    });
-  }
-  return {
-    doc,
-    setDoc,
-    setLanguage,
-  };
+  const instance = { view, doc };
+  instances.set(file, instance);
+  return instance;
 }

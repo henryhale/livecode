@@ -1,22 +1,35 @@
 <script setup>
 import NavBar from './components/NavBar.vue';
 import CodeEditor from './components/editor/index.vue';
-import { computed, reactive, ref } from 'vue';
+import { computed, reactive, ref, watchEffect } from 'vue';
 
-const tabs = ['HTML', 'CSS', 'JavaScript'];
+const files = reactive({
+  'index.html': '<h1>hello, world!</h1>',
+  'style.css': ':root {}',
+  'main.js': 'console.log(true);',
+});
 
-const currentTab = ref(tabs[0]);
-
-const code = reactive({});
+const currentTab = ref('index.html');
 
 function setTab(to) {
   currentTab.value = to;
 }
 
-function setCode(doc) {
-  console.log(currentTab.value + ' changed to ', doc);
-  code[currentTab.value] = doc;
+function getLang(filename) {
+  const ext = filename.split('.').pop();
+  if (ext === 'js') return 'javascript';
+  return ext;
 }
+
+function setCode(file, doc) {
+  files[file] = doc;
+}
+
+const iframe = ref();
+
+watchEffect(() => {
+  console.log(files['index.html'], files['main.js'], files['style.css']);
+});
 </script>
 
 <template>
@@ -47,7 +60,7 @@ function setCode(doc) {
       <div>
         <div class="tabs">
           <button
-            v-for="t in tabs"
+            v-for="t in Object.keys(files)"
             :key="t"
             :class="{ active: currentTab === t }"
             @click="setTab(t)"
@@ -56,10 +69,28 @@ function setCode(doc) {
           </button>
         </div>
         <div class="code">
-          <CodeEditor :lang="currentTab" @change="setCode" />
+          <div
+            v-for="file in Object.keys(files)"
+            :key="file"
+            v-show="currentTab === file"
+          >
+            <CodeEditor
+              :lang="getLang(file)"
+              :file="file"
+              :initialDoc="files[file]"
+              @change="(doc) => setCode(file, doc)"
+            />
+          </div>
         </div>
       </div>
-      <!-- <div class="preview">preview</div> -->
+      <div>
+        <iframe
+          ref="iframe"
+          src="about:blank"
+          frameborder="0"
+          title="preview"
+        ></iframe>
+      </div>
     </div>
   </div>
 </template>
@@ -89,31 +120,7 @@ function setCode(doc) {
 .code {
   @apply flex-grow pb-3 overflow-y-auto;
 }
+iframe {
+  @apply h-full w-full;
+}
 </style>
-
-<!-- <template>
-  <div>
-    <nav-bar title="LiveCode" class="sm:py-2 sm:px-3">
-      <template #default>
-        <button
-          v-for="t in tabs"
-          :key="t"
-          class="tab"
-          :class="{ 'tab-active': currentTab === t }"
-          @click="setTab(t)"
-        >
-          {{ t }}
-        </button>
-      </template>
-      <template #dropdown>
-        <li v-for="t in tabs" :key="t" @click="setTab(t)">
-          <button :class="{ active: currentTab === t }">{{ t }}</button>
-        </li>
-      </template>
-      <template #other>
-        <button class="btn">Preview</button>
-      </template>
-    </nav-bar>
-    <div></div>
-  </div>
-</template> -->
