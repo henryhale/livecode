@@ -7,8 +7,8 @@ import { addPackage, renderPreview } from './composables/preview';
 
 const files = reactive({
   'index.html': '<h1>hello, world!</h1>',
-  'style.css': ':root {}',
-  'main.js': 'console.log(true);',
+  'style.css': 'h1 {\n\tcolor: red;\n}',
+  'main.js': 'console.log(\n\tdocument.querySelector("h1")\n);',
 });
 
 const showPreview = ref(true);
