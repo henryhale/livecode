@@ -12,3 +12,43 @@ html,
 body {
   @apply m-0 p-0;
 }
+
+.box {
+  @apply w-screen h-screen text-gray-700;
+}
+
+.btn {
+  @apply px-4 py-1.5 transition;
+}
+
+.btn.active {
+  @apply text-blue-500 bg-blue-100 rounded-md;
+}
+
+.main {
+  @apply h-full flex flex-col md:flex-row pt-11;
+}
+
+.main > div {
+  @apply h-full md:w-1/2 flex flex-col;
+}
+
+.tabs {
+  @apply w-full flex flex-row pt-0.5 bg-slate-100;
+}
+
+.tabs > button {
+  @apply px-4 py-1.5 opacity-50 hover:opacity-100 transition;
+}
+
+.tabs > button.active {
+  @apply opacity-100 bg-white text-blue-500;
+}
+
+.code {
+  @apply flex-grow pb-3 overflow-y-auto;
+}
+
+iframe {
+  @apply h-full w-full;
+}

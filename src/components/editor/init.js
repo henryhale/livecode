@@ -20,7 +20,7 @@ import {
   indentWithTab,
 } from '@codemirror/commands';
 import { highlightSelectionMatches, searchKeymap } from '@codemirror/search';
-import { Compartment, EditorState } from '@codemirror/state';
+import { EditorState } from '@codemirror/state';
 import {
   crosshairCursor,
   drawSelection,
