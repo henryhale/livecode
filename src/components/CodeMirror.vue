@@ -1,5 +1,5 @@
 <script setup>
-import createEditor from './init';
+import createEditor from '../composables/editor';
 import {
   defineProps,
   reactive,

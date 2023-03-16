@@ -21,9 +21,6 @@
   @apply flex flex-row items-center px-2.5 py-1;
 }
 .nav > div > div:first-child {
-  @apply flex-grow flex flex-row space-x-2 md:py-1.5 md:justify-center;
-}
-.nav > div > div:last-child {
-  @apply md:hidden;
+  @apply flex-grow flex flex-row space-x-2;
 }
 </style>

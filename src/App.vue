@@ -1,7 +1,7 @@
 <script setup>
 import AppIcon from './components/AppIcon.vue';
 import NavBar from './components/NavBar.vue';
-import CodeEditor from './components/editor/index.vue';
+import CodeMirror from './components/CodeMirror.vue';
 import { computed, onMounted, reactive, ref, watchEffect } from 'vue';
 import { addPackage, renderPreview } from './composables/preview';
 
@@ -11,7 +11,7 @@ const files = reactive({
   'main.js': 'console.log(true);',
 });
 
-const showCode = ref(true);
+const showPreview = ref(true);
 
 const currentTab = ref('index.html');
 
@@ -51,21 +51,17 @@ onMounted(() => {
       </template>
       <button
         class="btn"
-        :class="{ active: showCode }"
-        @click="showCode = true"
+        :class="{ active: showPreview }"
+        @click="showPreview = !showPreview"
       >
-        Code
-      </button>
-      <button
-        class="btn"
-        :class="{ active: !showCode }"
-        @click="showCode = false"
-      >
-        Preview
+        {{ !showPreview ? 'Show ' : 'Hide ' }} Preview
       </button>
     </nav-bar>
-    <div class="main">
-      <div v-show="showCode">
+    <div class="main" :class="{ 'md:flex-row': showPreview }">
+      <div
+        class="flex-col h-full"
+        :class="[showPreview ? 'hidden md:flex md:w-1/2' : 'flex']"
+      >
         <div class="tabs">
           <button
             v-for="t in Object.keys(files)"
@@ -82,7 +78,7 @@ onMounted(() => {
             :key="file"
             v-show="currentTab === file"
           >
-            <CodeEditor
+            <CodeMirror
               :lang="getLang(file)"
               :file="file"
               :initialDoc="files[file]"
@@ -91,7 +87,11 @@ onMounted(() => {
           </div>
         </div>
       </div>
-      <div v-show="!showCode">
+      <div
+        v-show="showPreview"
+        class="h-full"
+        :class="{ 'md:w-1/2': showPreview }"
+      >
         <iframe
           ref="iframe"
           src="about:blank"
