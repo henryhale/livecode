@@ -2,14 +2,38 @@
 import AppIcon from './components/AppIcon.vue';
 import NavBar from './components/NavBar.vue';
 import CodeMirror from './components/CodeMirror.vue';
-import { computed, onMounted, reactive, ref, watchEffect } from 'vue';
-import { addPackage, renderPreview } from './composables/preview';
+import {
+  computed,
+  onMounted,
+  onUnmounted,
+  reactive,
+  ref,
+  watchEffect,
+} from 'vue';
+import {
+  changeCSS,
+  changeHTML,
+  changeJS,
+  setupPreview,
+} from './composables/preview';
+import { backup, restore, templateData } from './composables/storage';
 
-const files = reactive({
-  'index.html': '<h1>hello, world!</h1>',
-  'style.css': 'h1 {\n\tcolor: red;\n}',
-  'main.js': 'console.log(\n\tdocument.querySelector("h1")\n);',
-});
+let fileData = restore();
+if (!fileData || typeof fileData !== 'object') {
+  fileData = templateData;
+  backup(fileData);
+}
+
+const files = reactive(fileData);
+
+function backupFiles(e) {
+  if (e.ctrlKey && e.key.toLowerCase() === 's') {
+    e.preventDefault();
+    console.log('backing up files...');
+    backup(files);
+    console.log('backup was successful...');
+  }
+}
 
 const showPreview = ref(true);
 
@@ -26,19 +50,24 @@ function getLang(filename) {
 }
 
 function setCode(file, doc) {
+  console.log('changing: ', file);
   files[file] = doc;
 }
 
 const iframe = ref();
 
 onMounted(() => {
-  watchEffect(() => {
-    renderPreview(iframe, {
-      html: files['index.html'],
-      css: files['style.css'],
-      js: files['main.js'],
-    });
-  });
+  setupPreview(iframe);
+
+  watchEffect(() => changeHTML(files['index.html']));
+  watchEffect(() => changeCSS(files['style.css']));
+  watchEffect(() => changeJS(files['main.js']));
+
+  document.addEventListener('keydown', backupFiles, false);
+});
+
+onUnmounted(() => {
+  document.removeEventListener('keydown', backupFiles, false);
 });
 </script>
 
@@ -76,7 +105,7 @@ onMounted(() => {
           <div
             v-for="file in Object.keys(files)"
             :key="file"
-            v-show="currentTab === file"
+            v-show="file === currentTab"
           >
             <CodeMirror
               :lang="getLang(file)"

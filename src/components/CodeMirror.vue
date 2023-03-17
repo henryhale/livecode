@@ -1,13 +1,5 @@
 <script setup>
-import createEditor from '../composables/editor';
-import {
-  defineProps,
-  reactive,
-  ref,
-  onBeforeUnmount,
-  onMounted,
-  watchEffect,
-} from 'vue';
+import { reactive, ref, onMounted, watchEffect } from 'vue';
 
 const props = defineProps({
   lang: {
@@ -29,18 +21,15 @@ const el = ref();
 
 let editor;
 
-onMounted(() => {
-  editor = createEditor({
+onMounted(async () => {
+  const createEditor = (await import('../composables/editor')).default;
+  editor = await createEditor({
     target: el.value,
     lang: props.lang,
     initialDoc: props.initialDoc,
     file: props.file,
   });
   watchEffect(() => emit('change', editor.doc.value));
-});
-
-onBeforeUnmount(() => {
-  // gracefully destroy (editor) instance
 });
 </script>
 
