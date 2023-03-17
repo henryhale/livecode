@@ -36,5 +36,6 @@ export const templateData = {
     'const btn = document.querySelector("button");\n\n' +
     'btn.addEventListener("click", function () {\n  ' +
     'btn.innerHTML = "Count: "+ (++count);\n' +
-    '});\n',
+    '});\n\n' +
+    'btn.click();\n',
 };
