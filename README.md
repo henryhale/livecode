@@ -8,6 +8,7 @@ A front-end code playground tool right in your browser. It's intended for use wh
 - Minimal and fast
 - Live updates and preview
 - Builtin IDE with syntax highlighting, suggestions, and more
+- Local storage for backup (CTRL + S to save and automatic restore)
 
 ## Demo
 
