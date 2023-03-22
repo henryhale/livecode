@@ -5,27 +5,36 @@ export function setupPreview(iframe) {
   pagedoc = page.contentWindow.document;
 }
 
+let timer;
 export function changeJS(code) {
   if (!page || !pagedoc) return;
-  const scriptContent =
-    'var __$fn_ = function() { try { ' +
-    code +
-    ' } catch(err) { console.log(err); } };';
-  let stag = pagedoc.querySelector('script#stag');
-  if (!stag) {
+  if (timer) clearTimeout(timer);
+  timer = setTimeout(() => {
+    let stag = pagedoc.querySelector('script#stag');
+    if (stag) {
+      stag.parentNode.removeChild(stag);
+      page.contentWindow.__$fn_ = undefined;
+    }
     stag = document.createElement('script');
     stag.id = 'stag';
     pagedoc.head.appendChild(stag);
-  }
-  stag.textContent = scriptContent;
-  page.contentWindow.__$fn_.call();
+    stag.textContent = `
+var __$fn_ = function() {
+  try {
+    ${code}
+  } 
+  catch(err) { 
+    console.log(err);
+  } 
+};`;
+    page.contentWindow.__$fn_.call();
+  });
 }
 
 export function changeHTML(code) {
   if (pagedoc.body) {
+    pagedoc.body.innerHTML = '';
     pagedoc.body.innerHTML = code;
-  } else {
-    alert('not body tag');
   }
 }
 

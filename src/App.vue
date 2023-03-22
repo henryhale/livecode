@@ -24,7 +24,7 @@ if (!fileData || typeof fileData !== 'object') {
   backup(fileData);
 }
 
-const files = reactive(fileData);
+const files = reactive(Object.assign({}, fileData));
 
 function backupFiles(e) {
   if (e.ctrlKey && e.key.toLowerCase() === 's') {
@@ -50,7 +50,6 @@ function getLang(filename) {
 }
 
 function setCode(file, doc) {
-  console.log('changing: ', file);
   files[file] = doc;
 }
 
@@ -59,9 +58,11 @@ const iframe = ref();
 onMounted(() => {
   setupPreview(iframe);
 
-  watchEffect(() => changeHTML(files['index.html']));
   watchEffect(() => changeCSS(files['style.css']));
-  watchEffect(() => changeJS(files['main.js']));
+  watchEffect(() => {
+    changeHTML(files['index.html']);
+    changeJS(files['main.js']);
+  });
 
   document.addEventListener('keydown', backupFiles, false);
 });
@@ -119,7 +120,7 @@ onUnmounted(() => {
       <div
         v-show="showPreview"
         class="h-full"
-        :class="{ 'md:w-1/2': showPreview }"
+        :class="{ 'md:w-1/2 md:border md:border-gray-200': showPreview }"
       >
         <iframe
           ref="iframe"
