@@ -1,5 +1,4 @@
 <script setup>
-import AppIcon from './components/AppIcon.vue';
 import NavBar from './components/NavBar.vue';
 import CodeMirror from './components/CodeMirror.vue';
 import {
@@ -76,7 +75,7 @@ onUnmounted(() => {
   <div class="box">
     <nav-bar>
       <template #brand>
-        <AppIcon class="w-6 h-6" />
+        <img class="w-6 h-6" src="/brand.svg" />
         <span><b>LiveCode</b></span>
       </template>
       <button

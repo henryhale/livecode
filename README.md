@@ -1,4 +1,4 @@
-# livecode
+# LiveCode
 
 under construction...
 
