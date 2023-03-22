@@ -59,4 +59,4 @@ For any issue, kindly open one [here](https://github.com/henryhale/livecode/issu
 
 ## License
 
-Released under (MIT License)[./LICENSE.md]
+Released under [MIT License](./LICENSE.md)
