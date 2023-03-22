@@ -50,13 +50,13 @@ pnpm install
 pnpm dev
 ```
 
-## Issues and Contributions
+## Bugs, Issues and Contributions
 
 I'm glad you took time to check `LiveCode`. Thank you very much.
 
 All contributions are welcome, please follow the steps [here](https://github.com/henryhale/livecode/CONTRIBUTING.md);
 
-For any issue, kindly open one [here](https://github.com/henryhale/livecode/issues).
+For any bug or issue, kindly open one [here](https://github.com/henryhale/livecode/issues).
 
 ## License
 
