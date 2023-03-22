@@ -58,6 +58,16 @@ All contributions are welcome, please follow the steps [here](https://github.com
 
 For any bug or issue, kindly open one [here](https://github.com/henryhale/livecode/issues).
 
+## Credits
+
+Thanks to these amazing projects, `LiveCode` heavily depends on them;
+
+- [Vue.js](https://vuejs.org)
+- [Vite.js](https://vitejs.dev)
+- [TailwindCSS](https://tailwindcss.com)
+- [CodeMirror](https://codemirror.net)
+- [LowDB](https://github.com/typicode/lowdb)
+
 ## License
 
 Released under [MIT License](./LICENSE.md)
