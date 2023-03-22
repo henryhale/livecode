@@ -1,3 +1,5 @@
+![](./public/brand.png)
+
 # LiveCode
 
 under construction...
