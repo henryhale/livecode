@@ -26,7 +26,7 @@ If you need a more fully fledged online code playground, try;
 
 ## Get Started
 
-[Edit on StackBlitz ⚡️](https://stackblitz.com/github/henryhale/livecode)
+[> Edit on StackBlitz ⚡️](https://stackblitz.com/github/henryhale/livecode)
 
 ## Install
 
