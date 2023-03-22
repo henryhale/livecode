@@ -2,6 +2,19 @@
   "name": "livecode",
   "private": true,
   "version": "0.0.0",
+  "author": {
+    "name": "Henry Hale",
+    "url": "https://github.com/henryhale"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/henryhale/livecode.git"
+  },
+  "bugs": {
+    "url": "https://github.com/henryhale/livecode/issues"
+  },
+  "homepage": "https://github.com/henryhale/livecode#readme",
+  "license": "MIT",
   "type": "module",
   "scripts": {
     "dev": "vite",
