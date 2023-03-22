@@ -32,6 +32,7 @@ import {
   rectangularSelection,
 } from '@codemirror/view';
 
+// CodeMirror extensions;
 export default () => [
   lineNumbers(),
   highlightActiveLineGutter(),

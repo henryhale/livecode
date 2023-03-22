@@ -2,8 +2,10 @@ import { EditorState } from '@codemirror/state';
 import { EditorView } from '@codemirror/view';
 import { ref } from 'vue';
 
+// cache instances of codemirror for every file
 const instances = new Map();
 
+//  create a codemirror instance for a specific file and language
 export default async function createEditor({ target, initialDoc, lang, file }) {
   if (instances.has(file)) {
     return instances.get(file);

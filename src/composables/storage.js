@@ -1,5 +1,9 @@
 import { LowSync } from 'lowdb';
 import { LocalStorage } from 'lowdb/browser';
+/**
+ * Use localStorage to store code on CTRL + S
+ * -> automatically restored on initial page load
+ */
 
 const dbName = 'livecode-backup';
 
@@ -15,6 +19,7 @@ export function backup(data) {
   db.write();
 }
 
+// Initial templates
 export const templateData = {
   'index.html':
     '<div id="app">\n  ' +

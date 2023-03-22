@@ -1,10 +1,12 @@
 let page, pagedoc;
 
+// init iframe and get reference to it's window object
 export function setupPreview(iframe) {
   page = iframe.value;
   pagedoc = page.contentWindow.document;
 }
 
+// debounce changes in js code, then execute it
 let timer;
 export function changeJS(code) {
   if (!page || !pagedoc) return;
@@ -31,13 +33,14 @@ var __$fn_ = function() {
   });
 }
 
+// change iframe's dom
 export function changeHTML(code) {
   if (pagedoc.body) {
-    pagedoc.body.innerHTML = '';
     pagedoc.body.innerHTML = code;
   }
 }
 
+// iframe's css styles
 export function changeCSS(code) {
   if (!pagedoc) return;
   let xtag = pagedoc.querySelector('style#xtag');
@@ -50,7 +53,7 @@ export function changeCSS(code) {
 }
 
 /**
- * TODO: Ability to add packages using cdn links
+ * TODO: Ability to add packages using cdn links (unpkg, jsdelivr, cdnjs, ...)
  */
 
 // const packages = [];
