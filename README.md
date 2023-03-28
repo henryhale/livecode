@@ -1,4 +1,12 @@
-# LiveCode
+<div align="center">
+
+![](./public/brand.png)
+
+<h1>LiveCode</h1>
+
+</div>
+
+![](./media/screenshot.png)
 
 A front-end code playground tool right in your browser. It's intended for use wherever possible most especially, live coding sessions for front-end developers.
 
@@ -26,7 +34,7 @@ If you need a more fully fledged online code playground, try;
 
 ## Get Started
 
-[> Edit on StackBlitz ⚡️](https://stackblitz.com/github/henryhale/livecode)
+> [ Edit on StackBlitz ⚡️](https://stackblitz.com/github/henryhale/livecode)
 
 ## Install
 
@@ -41,13 +49,13 @@ git clone https://github.com/henryhale/livecode.git
 - Install all dependencies
 
 ```sh
-pnpm install
+pnpm install # or npm install or yarn install
 ```
 
 - Run dev server
 
 ```sh
-pnpm dev
+pnpm dev # or npm run dev or yarn run dev
 ```
 
 ## Bugs, Issues and Contributions
