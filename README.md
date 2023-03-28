@@ -6,9 +6,9 @@
 
 </div>
 
-![](./media/screenshot.png)
-
 A front-end code playground tool right in your browser. It's intended for use wherever possible most especially, live coding sessions for front-end developers.
+
+![](./media/screenshot.png)
 
 ## Features
 
