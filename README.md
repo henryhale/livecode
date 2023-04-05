@@ -4,11 +4,11 @@
 
 <h1>LiveCode</h1>
 
-</div>
-
 A front-end code playground tool right in your browser. It's intended for use wherever possible most especially, live coding sessions for front-end developers.
 
 ![](./media/screenshot.png)
+
+</div>
 
 ## Features
 
