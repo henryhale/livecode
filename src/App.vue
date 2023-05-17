@@ -2,19 +2,13 @@
 import NavBar from './components/NavBar.vue';
 import CodeMirror from './components/CodeMirror.vue';
 import {
-  computed,
   onMounted,
   onUnmounted,
   reactive,
   ref,
   watchEffect,
 } from 'vue';
-import {
-  changeCSS,
-  changeHTML,
-  changeJS,
-  setupPreview,
-} from './composables/preview';
+import setupPreview from './composables/preview';
 import { backup, restore, templateData } from './composables/storage';
 
 let fileData = restore();
@@ -55,13 +49,10 @@ function setCode(file, doc) {
 const iframe = ref();
 
 onMounted(() => {
-  setupPreview(iframe);
 
-  watchEffect(() => changeCSS(files['style.css']));
   watchEffect(() => {
-    changeHTML(files['index.html']);
-    changeJS(files['main.js']);
-  });
+    setupPreview(iframe.value, files['index.html'], files['style.css'], files['main.js']);
+  })
 
   document.addEventListener('keydown', backupFiles, false);
 });
