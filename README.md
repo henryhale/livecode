@@ -34,7 +34,7 @@ If you need a more fully fledged online code playground, try;
 
 ## Get Started
 
-> [ Edit on StackBlitz ⚡️](https://stackblitz.com/github/henryhale/livecode)
+[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/henryhale/livecode)
 
 ## Install
 
