@@ -62,7 +62,7 @@ pnpm dev # or npm run dev or yarn run dev
 
 I'm glad you took time to check `LiveCode`. Thank you very much.
 
-All contributions are welcome, please follow the steps [here](https://github.com/henryhale/livecode/CONTRIBUTING.md);
+All contributions are welcome, please follow the steps [here](https://github.com/henryhale/livecode/blob/main/.github/CONTRIBUTING.md)
 
 For any bug or issue, kindly open one [here](https://github.com/henryhale/livecode/issues).
 
