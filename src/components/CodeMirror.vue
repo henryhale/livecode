@@ -1,5 +1,5 @@
 <script setup>
-import { reactive, ref, onMounted, watchEffect } from 'vue';
+import { ref, onMounted, watchEffect } from 'vue';
 
 const props = defineProps({
   lang: {
