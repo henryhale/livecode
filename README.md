@@ -49,13 +49,13 @@ git clone https://github.com/henryhale/livecode.git
 - Install all dependencies
 
 ```sh
-pnpm install # or npm install or yarn install
+pnpm install
 ```
 
 - Run dev server
 
 ```sh
-pnpm dev # or npm run dev or yarn run dev
+pnpm dev
 ```
 
 ## Bugs, Issues and Contributions
@@ -70,11 +70,11 @@ For any bug or issue, kindly open one [here](https://github.com/henryhale/liveco
 
 Thanks to these amazing projects, `LiveCode` heavily depends on them;
 
-- [Vue.js](https://vuejs.org)
-- [Vite.js](https://vitejs.dev)
-- [TailwindCSS](https://tailwindcss.com)
-- [CodeMirror](https://codemirror.net)
-- [LowDB](https://github.com/typicode/lowdb)
+- [vue.js](https://vuejs.org)
+- [vite.js](https://vitejs.dev)
+- [tailwindcss](https://tailwindcss.com)
+- [codemirror](https://codemirror.net)
+- [shadcn-vue](https://github.com/unovue/shadcn-vue)
 
 ## License
 
