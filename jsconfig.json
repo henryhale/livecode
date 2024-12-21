@@ -1,0 +1,19 @@
+{
+	"compilerOptions": {
+	  "target": "ESNext",
+	  "module": "ESNext",
+	  "moduleResolution": "Node",
+	  "baseUrl": "./",
+	  "paths": {
+		"@/*": ["source/*"]
+	  },
+	  "strict": true,
+	  "jsx": "preserve",
+	  "esModuleInterop": true,
+	  "allowSyntheticDefaultImports": true,
+	  "forceConsistentCasingInFileNames": true
+	},
+	"include": ["source/**/*", "vite.config.js"],
+	"exclude": ["node_modules", "dist"]
+  }
+  
