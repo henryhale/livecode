@@ -39,12 +39,12 @@ function viewRight() {
 </script>
 
 <template>
-	<ResizablePanelGroup id="demo-group-1" :direction="verticalAlign ? 'vertical' : 'horizontal'" class="bg-yello-300 box">
+	<ResizablePanelGroup id="demo-group-1" :direction="verticalAlign ? 'vertical' : 'horizontal'" class="box">
 		<ResizablePanel ref="panelLeft" id="demo-panel-1" :default-size="50" collapsible :collapsed-size="0"
 			:min-size="35" class="overflow-y-auto">
 			<slot name="left"></slot>
 		</ResizablePanel>
-		<ResizableHandle id="demo-handle-1" :class="{ 'hover:w-1': !verticalAlign }" />
+		<ResizableHandle with-handle id="demo-handle-1" :class="{ 'hover:w-1': !verticalAlign }" />
 		<ResizablePanel ref="panelRight" id="demo-panel-2" :default-size="50" collapsible :collapsed-size="0"
 			:min-size="35" class="overflow-y-auto">
 			<slot name="right"></slot>

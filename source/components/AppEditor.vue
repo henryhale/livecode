@@ -22,7 +22,7 @@ const tabs = [
 <template>
 	<div class="flex flex-col h-full relative">
 		<div
-			class="flex items-center flex-none pl-5 sm:pl-6 pr-4 lg:pr-6 antialiased border">
+			class="flex items-center flex-none pl-5 sm:pl-6 pr-4 lg:pr-6 border-b overflow-x-auto">
 			<div class="flex">
 				<Button 
 					v-for="tab in tabs" :key="tab[0]"
