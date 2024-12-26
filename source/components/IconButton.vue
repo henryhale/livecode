@@ -17,7 +17,7 @@ const emit = defineEmits(['trigger'])
 		<Tooltip>
 			<TooltipTrigger>
 				<Button variant="ghost" size="icon" @click="emit('trigger')"
-					:class="[active ? 'text-blue-500' : 'text-muted-foreground', mobile ? '' : 'hidden sm:inline-flex']">
+					:class="[active ? 'text-blue-600' : 'text-muted-foreground', mobile ? '' : 'hidden sm:inline-flex']">
 					<slot></slot>
 				</Button>
 			</TooltipTrigger>
