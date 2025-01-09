@@ -18,7 +18,7 @@ watchEffect(() => {
 	const view = store.layout
 	if (view === 'left') viewLeft()
 	else if (view === 'right') viewRight()
-	else if (view === 'column') splitView(true)
+	else if (view === 'row') splitView(true)
 	else splitView(false)
 })
 

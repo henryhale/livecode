@@ -13,8 +13,7 @@ import {
 } from './ui/menubar'
 import BaseLogo from './BaseLogo.vue'
 import IconButton from './IconButton.vue'
-import SplitView from './icons/SplitView.vue'
-import SideView from './icons/SideView.vue'
+import { ArrowUpRightIcon, PanelLeftIcon, PanelRightIcon, Columns2Icon, Rows2Icon } from 'lucide-vue-next'
 import { useAppStore } from '@/store'
 import { useFullscreen } from '@/helpers/fullscreen'
 import { onMounted, onBeforeUnmount } from 'vue'
@@ -89,16 +88,22 @@ onBeforeUnmount(() => {
 				<MenubarTrigger>Help</MenubarTrigger>
 				<MenubarContent>
 					<MenubarItem>
-						<a target="_blank" href="https://github.com/henryhale/livecode/issues">Report Issue</a>
+						<a class="flex-grow" target="_blank" href="https://github.com/henryhale/livecode/issues">Report
+							Issue</a>
+						<ArrowUpRightIcon class="size-4 opacity-40" />
 					</MenubarItem>
 					<MenubarSeparator />
 					<MenubarItem>
-						<a target="_blank" href="https://github.com/henryhale/livecode/blob/main/LICENSE.md">View
+						<a class="flex-grow" target="_blank"
+							href="https://github.com/henryhale/livecode/blob/main/LICENSE.md">View
 							License</a>
+						<ArrowUpRightIcon class="size-4 opacity-40" />
 					</MenubarItem>
 					<MenubarSeparator />
 					<MenubarItem>
-						<a target="_blank" href="https://github.com/henryhale/livecode#readme">About</a>
+						<a class="flex-grow" target="_blank"
+							href="https://github.com/henryhale/livecode#readme">About</a>
+						<ArrowUpRightIcon class="size-4 opacity-40" />
 					</MenubarItem>
 				</MenubarContent>
 			</MenubarMenu>
@@ -106,19 +111,19 @@ onBeforeUnmount(() => {
 		<div class="space-x-2 flex items-center">
 			<IconButton text="Editor" :mobile="true" :active="store.layout === 'left'"
 				@trigger="() => store.layout = 'left'">
-				<SideView />
+				<PanelLeftIcon />
 			</IconButton>
-			<IconButton text="Row view" :mobile="false" :active="store.layout === 'row'"
-				@trigger="() => store.layout = 'row'">
-				<SplitView />
-			</IconButton>
-			<IconButton text="Column view" :mobile="true" :active="store.layout === 'column'"
+			<IconButton text="Column view" :mobile="false" :active="store.layout === 'column'"
 				@trigger="() => store.layout = 'column'">
-				<SplitView class="rotate-90" />
+				<Columns2Icon />
+			</IconButton>
+			<IconButton text="Row view" :mobile="true" :active="store.layout === 'row'"
+				@trigger="() => store.layout = 'row'">
+				<Rows2Icon />
 			</IconButton>
 			<IconButton text="Preview" :mobile="true" :active="store.layout === 'right'"
 				@trigger="() => store.layout = 'right'">
-				<SideView class="rotate-180" />
+				<PanelRightIcon />
 			</IconButton>
 		</div>
 	</div>

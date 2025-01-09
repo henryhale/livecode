@@ -6,7 +6,7 @@ import { useToast } from '@/components/ui/toast/use-toast'
 const prevSession = restore() || template
 
 export const useAppStore = defineStore("app", () => {
-	const layout = ref(window.innerWidth < 768 ? 'column' : 'row');
+	const layout = ref(window.innerWidth < 768 ? 'row' : 'column');
 
 	const code = reactive({
 		html: prevSession['index.html'],
