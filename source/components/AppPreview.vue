@@ -7,19 +7,19 @@ const store = useAppStore()
 const iframe = ref()
 
 const content = computed(() => {
-	return `<html><head><style type="text/css">${store.code.css}</style></head><body>${store.code.html}<script type="text/javascript">(function() { try { ${store.code.js} } catch(err) { console.error(err); } })();</` + `script></body></html>`
+	return `<html><head><style type="text/css">${store.code.css}</style></head><body>${store.code.html}<script type="module">${store.code.js}</` + `script></body></html>`
 })
 
-let tid;
+let tid, objectURL;
 function refreshPreview(x) {
 	if (!iframe.value) return
 	if (tid) clearTimeout(tid);
 	tid = setTimeout(() => {
-		const doc = iframe.value.contentWindow.document;
-		doc.open();
-		doc.writeln(content.value);
-		doc.close();
-	}, 200);
+		if (objectURL) URL.revokeObjectURL(objectURL)
+		const blob = new Blob([content.value], { type: 'text/html' })
+		objectURL = URL.createObjectURL(blob)
+		iframe.value.src = objectURL
+	}, 300);
 }
 
 watchEffect(() => {
@@ -28,5 +28,5 @@ watchEffect(() => {
 </script>
 
 <template>
-	<iframe ref="iframe" src="about:blank" frameborder="0" title="preview" class="h-full w-full"></iframe>
+	<iframe ref="iframe" src="about:blank" frameborder="0" title="preview" sandbox="allow-scripts" class="h-full w-full"></iframe>
 </template>
