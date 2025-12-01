@@ -1,13 +1,14 @@
 <script setup>
 import { computed, ref, watchEffect } from 'vue'
 import { useAppStore } from '@/store'
+import { generatePageContent } from '@/helpers/code'
 
 const store = useAppStore()
 
 const iframe = ref()
 
 const content = computed(() => {
-	return `<html><head><style type="text/css">${store.code.css}</style></head><body>${store.code.html}<script type="module">${store.code.js}</` + `script></body></html>`
+	return generatePageContent(store.code)
 })
 
 let tid, objectURL;

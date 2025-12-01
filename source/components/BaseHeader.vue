@@ -17,6 +17,7 @@ import { ArrowUpRightIcon, PanelLeftIcon, PanelRightIcon, Columns2Icon, Rows2Ico
 import { useAppStore } from '@/store'
 import { useFullscreen } from '@/helpers/fullscreen'
 import { onMounted, onBeforeUnmount } from 'vue'
+import {exportAsPage, exportAsZip} from '@/helpers/code'
 
 const fullscreen = useFullscreen()
 const store = useAppStore()
@@ -25,6 +26,8 @@ const switchView = (v) => store.layout = v
 const newTab = () => window.open(window.location.href)
 const closeTab = () => window.close()
 const reloadTab = () => window.location.reload()
+const downloadAsPage = () => exportAsPage(store.code) 
+const downloadAsZip = () => exportAsZip(store.code) 
 
 function newTabHandler(ev) {
 	if (ev.key?.toLowerCase() === 'n' && ev.ctrlKey && ev.altKey) {
@@ -52,6 +55,13 @@ onBeforeUnmount(() => {
 					<MenubarItem @click="store.saveSession()">
 						Save <MenubarShortcut>Ctrl+S</MenubarShortcut>
 					</MenubarItem>
+					<MenubarSub>
+						<MenubarSubTrigger>Export As</MenubarSubTrigger>
+						<MenubarSubContent>
+							<MenubarItem @click="downloadAsPage()">Single page (.html)</MenubarItem>
+							<MenubarItem @click="downloadAsZip()">Zip (.zip)</MenubarItem>
+						</MenubarSubContent>
+					</MenubarSub>
 					<MenubarSeparator />
 					<MenubarItem @click="newTab()">
 						New Window <MenubarShortcut>Ctrl+Alt+N</MenubarShortcut>
