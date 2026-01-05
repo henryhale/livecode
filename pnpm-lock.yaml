@@ -38,6 +38,12 @@ importers:
       '@codemirror/view':
         specifier: ^6.36.1
         version: 6.36.1
+      '@fsegurai/codemirror-theme-github-dark':
+        specifier: ^6.2.3
+        version: 6.2.3(@codemirror/language@6.10.7)(@codemirror/state@6.5.0)(@codemirror/view@6.36.1)(@lezer/highlight@1.2.0)
+      '@fsegurai/codemirror-theme-github-light':
+        specifier: ^6.2.3
+        version: 6.2.3(@codemirror/language@6.10.7)(@codemirror/state@6.5.0)(@codemirror/view@6.36.1)(@lezer/highlight@1.2.0)
       class-variance-authority:
         specifier: ^0.7.1
         version: 0.7.1
@@ -75,6 +81,9 @@ importers:
       postcss:
         specifier: ^8.4.49
         version: 8.4.49
+      prettier:
+        specifier: ^3.7.4
+        version: 3.7.4
       tailwindcss:
         specifier: ^3.4.17
         version: 3.4.17
@@ -290,6 +299,22 @@ packages:
 
   '@floating-ui/vue@1.1.5':
     resolution: {integrity: sha512-ynL1p5Z+woPVSwgMGqeDrx6HrJfGIDzFyESFkyqJKilGW1+h/8yVY29Khn0LaU6wHBRwZ13ntG6reiHWK6jyzw==}
+
+  '@fsegurai/codemirror-theme-github-dark@6.2.3':
+    resolution: {integrity: sha512-EBBbSK0iZn4w3T5fNx9ZV5ur1X7N+RVfTdWzrPmz1LJ90UQshTFpalm9oYMJ/5/98zwP9p99bsLrKE1r2x6A6w==}
+    peerDependencies:
+      '@codemirror/language': ^6.0.0
+      '@codemirror/state': ^6.0.0
+      '@codemirror/view': ^6.0.0
+      '@lezer/highlight': ^1.0.0
+
+  '@fsegurai/codemirror-theme-github-light@6.2.3':
+    resolution: {integrity: sha512-vbwyznBoTrLQdWvQ6/vjIpoDojd7VIMK+sQnMXkKOjXbm5cGul6A3mqM2RSt9Z5NhIRikmxKkApflvWOJrDuWA==}
+    peerDependencies:
+      '@codemirror/language': ^6.0.0
+      '@codemirror/state': ^6.0.0
+      '@codemirror/view': ^6.0.0
+      '@lezer/highlight': ^1.0.0
 
   '@internationalized/date@3.6.0':
     resolution: {integrity: sha512-+z6ti+CcJnRlLHok/emGEsWQhe7kfSmEW+/6qCzvKY67YPh7YOBfvc7+/+NXq+zJlbArg30tYpqLjNgcAYv2YQ==}
@@ -911,6 +936,11 @@ packages:
     resolution: {integrity: sha512-OCVPnIObs4N29kxTjzLfUryOkvZEq+pf8jTF0lg8E7uETuWHA+v7j3c/xJmiqpX450191LlmZfUKkXxkTry7nA==}
     engines: {node: ^10 || ^12 || >=14}
 
+  prettier@3.7.4:
+    resolution: {integrity: sha512-v6UNi1+3hSlVvv8fSaoUbggEM5VErKmmpGA7Pl3HF8V6uKY7rvClBOJlH6yNwQtfTueNkGVpOv/mtWL9L4bgRA==}
+    engines: {node: '>=14'}
+    hasBin: true
+
   process-nextick-args@2.0.1:
     resolution: {integrity: sha512-3ouUOpQhtgrbOa17J7+uxOTpITYWaGP7/AhoR3+A+/1e9skrzelGi/dXzEYyvbxubEF6Wn2ypscTKiKJFFn1ag==}
 
@@ -1302,6 +1332,20 @@ snapshots:
     transitivePeerDependencies:
       - '@vue/composition-api'
       - vue
+
+  '@fsegurai/codemirror-theme-github-dark@6.2.3(@codemirror/language@6.10.7)(@codemirror/state@6.5.0)(@codemirror/view@6.36.1)(@lezer/highlight@1.2.0)':
+    dependencies:
+      '@codemirror/language': 6.10.7
+      '@codemirror/state': 6.5.0
+      '@codemirror/view': 6.36.1
+      '@lezer/highlight': 1.2.0
+
+  '@fsegurai/codemirror-theme-github-light@6.2.3(@codemirror/language@6.10.7)(@codemirror/state@6.5.0)(@codemirror/view@6.36.1)(@lezer/highlight@1.2.0)':
+    dependencies:
+      '@codemirror/language': 6.10.7
+      '@codemirror/state': 6.5.0
+      '@codemirror/view': 6.36.1
+      '@lezer/highlight': 1.2.0
 
   '@internationalized/date@3.6.0':
     dependencies:
@@ -1897,6 +1941,8 @@ snapshots:
       nanoid: 3.3.7
       picocolors: 1.1.1
       source-map-js: 1.2.1
+
+  prettier@3.7.4: {}
 
   process-nextick-args@2.0.1: {}
 

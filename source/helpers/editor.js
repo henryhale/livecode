@@ -1,4 +1,4 @@
-import { EditorState } from "@codemirror/state";
+import { EditorState, Compartment } from "@codemirror/state";
 import { EditorView } from "@codemirror/view";
 import { ref } from "vue";
 
@@ -7,54 +7,59 @@ const instances = new Map();
 
 //  create a codemirror instance for a specific file and language
 export default async function createEditor({ target, initialDoc, lang, file }) {
-	if (instances.has(file)) {
-		return instances.get(file);
-	}
+    if (instances.has(file)) {
+        return instances.get(file);
+    }
 
-	const doc = ref("");
+    const doc = ref("");
 
-	const state = {
-		doc: initialDoc || "",
-		extensions: (await import("./editor-ext")).default(),
-	};
+    const state = {
+        doc: initialDoc || "",
+        extensions: (await import("./editor-ext")).default()
+    };
 
-	state.extensions.push(
-		EditorState.allowMultipleSelections.of(true),
-		EditorView.updateListener.of((e) => {
-			doc.value = e.state.doc.toString();
-		})
-	);
+    state.extensions.push(
+        EditorState.allowMultipleSelections.of(true),
+        EditorView.updateListener.of((e) => {
+            doc.value = e.state.doc.toString();
+        })
+    );
 
-	let languagePlugin;
+    let languagePlugin;
 
-	switch (lang) {
-		case "html":
-			languagePlugin = (await import("@codemirror/lang-html")).html();
-			break;
-		case "css":
-			languagePlugin = (await import("@codemirror/lang-css")).css();
-			break;
-		case "js":
-			languagePlugin = (
-				await import("@codemirror/lang-javascript")
-			).javascript();
-			break;
-		default:
-			break;
-	}
+    switch (lang) {
+        case "html":
+            languagePlugin = (await import("@codemirror/lang-html")).html();
+            break;
+        case "css":
+            languagePlugin = (await import("@codemirror/lang-css")).css();
+            break;
+        case "js":
+            languagePlugin = (
+                await import("@codemirror/lang-javascript")
+            ).javascript();
+            break;
+        default:
+            break;
+    }
 
-	if (languagePlugin) {
-		state.extensions.push(languagePlugin);
-	}
+    if (languagePlugin) {
+        state.extensions.push(languagePlugin);
+    }
 
-	const view = new EditorView({
-		state: EditorState.create(state),
-		parent: target,
-	});
+    const { githubLight } =
+        await import("@fsegurai/codemirror-theme-github-light");
+    const themeCompartment = new Compartment();
+    state.extensions.push(themeCompartment.of(githubLight));
 
-	const instance = { view, doc };
+    const view = new EditorView({
+        state: EditorState.create(state),
+        parent: target
+    });
 
-	instances.set(file, instance);
+    const instance = { view, doc, themeCompartment };
 
-	return instance;
+    instances.set(file, instance);
+
+    return instance;
 }
