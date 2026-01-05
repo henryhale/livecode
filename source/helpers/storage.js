@@ -22,7 +22,7 @@ export const template = {
     "style.css":
         "#app {\n  color: #0d79d1;\n  text-align:center;\n  margin: 4rem 0;\n}\n\nbutton {\n  cursor: pointer;\n  color: inherit;\n  background-color: #e6f4ff;\n  border-radius: 6px;\n  border: 0 none;\n  padding: 0.5rem 0.75rem;\n}",
     "main.js":
-        'let count = 0;\n\nconst btn = document.querySelector("button");\n\nbtn.onclick = () => {\n  btn.innerHTML = `Count: ${++count}`;\n};\n\nbtn.click();\n'
+        'let count = 0;\n\nconst btn = document.querySelector("button");\n\nbtn.onclick = () => {\n  btn.textContent = `Count: ${++count}`;\n};\n\nbtn.click();\n'
 };
 
 const STORAGE_KEY = "livecode-backup";
