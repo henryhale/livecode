@@ -1,12 +1,11 @@
 <div align="center">
-
-![](./public/logo.png)
+<img src="./public/logo.png" width="50" />
 
 <h1>LiveCode</h1>
 
 A front-end code playground tool right in your browser. It's intended for use wherever possible most especially, live coding sessions for front-end developers.
 
-![](./media/screenshot3.png)
+![](./media/screenshot4.png)
 
 </div>
 
