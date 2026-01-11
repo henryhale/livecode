@@ -32,7 +32,8 @@ const store = useAppStore();
 
 const switchTheme = (v) => (store.theme = v);
 const switchView = (v) => (store.layout = v);
-const newTab = () => window.open(window.location.href);
+const newTab = () =>
+    window.open(window.location.href + `?session=${Date.now().toString(32)}`);
 const closeTab = () => window.close();
 const reloadTab = () => window.location.reload();
 const downloadAsPage = () => exportAsPage(store.code);

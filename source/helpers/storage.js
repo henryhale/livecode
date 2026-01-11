@@ -25,7 +25,12 @@ export const template = {
         'let count = 0;\n\nconst btn = document.querySelector("button");\n\nbtn.onclick = () => {\n  btn.textContent = `Count: ${++count}`;\n};\n\nbtn.click();\n'
 };
 
-const STORAGE_KEY = "livecode-backup";
+// storage key for a new session in a different window or tab
+const sessionKey = new URLSearchParams(window.location.search).get("session");
+
+const STORAGE_KEY = sessionKey
+    ? `livecode-window-${sessionKey}`
+    : "livecode-backup";
 
 export function restore() {
     const data = getData(STORAGE_KEY);

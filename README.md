@@ -11,10 +11,13 @@ A front-end code playground tool right in your browser. It's intended for use wh
 
 ## Features
 
-- Easy to use
 - Minimal and fast
 - Live updates and preview
-- Builtin IDE with syntax highlighting, suggestions, and more
+- Fullscreen mode
+- Theme: Light/Dark/System
+- Export as single HTML page or ZIP file 
+- Multiple Layouts - editor only, preview only or split (vertical/horizontal)
+- Builtin IDE with syntax highlighting, suggestions/autocomplete, and more
 - Local storage for backup (CTRL + S to save and automatic restore)
 
 ## Demo
